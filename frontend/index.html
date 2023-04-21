@@ -1,0 +1,57 @@
+<html lang="en">
+  <head>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+
+    <meta charset="UTF-8" />
+    <title>NewMonkey Presale</title>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <p>Presale page</p>
+
+    <table>
+      <tr>
+        <td>selected account</td>
+        <td id="selectedAccount"></td>
+      </tr>
+      <tr>
+        <td>selected chainid</td>
+        <td id="selectedChainId"></td>
+      </tr>
+      <tr>
+        <td>My NewMonkey balance</td>
+        <td id="newMonkeyBalance"></td>
+      </tr>
+      <tr>
+        <td>Total Supply</td>
+        <td id="newMonkeyTotalSupply"></td>
+      </tr>
+      <tr>
+        <td>Mint</td>
+        <td><button id="mintButton">Mint</button></td>
+      </tr>
+      <tr>
+        <td>TX Hash</td>
+        <td id="txHash"></td>
+      </tr>
+    </table>
+    <script src="js/bundle.js"></script>
+  </body>
+</html>

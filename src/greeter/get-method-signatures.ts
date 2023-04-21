@@ -1,0 +1,44 @@
+import hre, { ethers } from 'hardhat';
+import { getGasOption } from '../utils/gas';
+import * as fs from 'fs';
+import { Greeter } from '../../typechain';
+
+async function main() {
+  const [admin] = await hre.ethers.getSigners();
+  const chainId = hre.network.config.chainId || 0;
+
+  const deployedGreeterJson = fs.readFileSync(
+    __dirname + '/greeter.deployed.json',
+    'utf-8',
+  );
+  const deployedGreeter = JSON.parse(deployedGreeterJson);
+  const greeter = (await ethers.getContractAt(
+    deployedGreeter.abi,
+    deployedGreeter.address,
+  )) as Greeter;
+
+  const keys = Object.keys(greeter.functions);
+
+  console.log(
+    '======================== methods start ========================',
+  );
+
+  for (let i = 0; i < keys.length; i++) {
+    if (keys[i].includes('(') == true) {
+      const encodedMethodName = ethers.utils.keccak256(
+        ethers.utils.toUtf8Bytes(keys[i]),
+      );
+
+      console.log(`${keys[i]} : ${encodedMethodName}`);
+    }
+  }
+
+  console.log('======================== methods end ========================');
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
